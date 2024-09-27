@@ -18,7 +18,7 @@ public class ElementoRiproducibile extends ElementoMultimediale{
         return volume;
     }
 
-    //Metodo volume
+    //Metodo alza volume
         public void alzaVolume() {
             if (volume < 10) {
                 volume++;
@@ -27,6 +27,8 @@ public class ElementoRiproducibile extends ElementoMultimediale{
                 System.out.println("Il volume è già al massimo.");
             }
         }
+
+        //Metodo abbassa
         public void abbassaVolume(){
             if(volume > 0){
                 volume--;

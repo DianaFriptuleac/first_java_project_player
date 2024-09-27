@@ -2,7 +2,7 @@ public class Video extends ElementoRiproducibile implements Riproduci{
   private int luminosita;
 
   public Video(String titolo, int durata, int volume, int luminosita) {
-        super(titolo, volume, durata);
+        super(titolo, durata, volume);
         this.luminosita = luminosita;
     }
 
