@@ -23,4 +23,7 @@ private int luminosita;
         System.out.println(getTitolo()+ " "+ "*".repeat(luminosita));
     }
 
+    public int getLuminosita() {
+        return luminosita;
+    }
 }

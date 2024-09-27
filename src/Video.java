@@ -26,5 +26,9 @@ public class Video extends ElementoRiproducibile implements Riproduci{
             System.out.println(getTitolo() + ": " + "!".repeat(getVolume()) + "*".repeat(luminosita));
         }
     }
+
+    public int getLuminosita() {
+      return luminosita;
+    }
 }
 

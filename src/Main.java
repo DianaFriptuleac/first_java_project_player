@@ -145,16 +145,14 @@ public class Main {
 
 
     //Metodo per il tipo dell'elemento
-    private static String tipoElemento(ElementoMultimediale el){
-        if(el instanceof Audio){
-            return "Audio";
-        }else if(el instanceof Video){
-            return "Video";
-        }else if(el instanceof Immagine){
-            return "Immagine";
-        }else{
-            return "TTipo di dato sconosciuto";
-        }
+    private static String tipoElemento(ElementoMultimediale el) {
+        return switch (el) {
+            case Audio audio -> "Audio con durata: " + audio.getDurata();
+            case Video video -> "Video con luminosità: " + video.getLuminosita();
+            case Immagine immagine -> "Immagine con luminosità: " + immagine.getLuminosita();
+            case null -> "Tipo di dato sconosciuto";
+            default -> "Tipo di dato sconosciuto";
+        };
 
     }
 }
