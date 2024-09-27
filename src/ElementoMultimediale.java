@@ -1,3 +1,5 @@
+//classe principale
+
 abstract class ElementoMultimediale {
     protected String titolo;
 
@@ -8,4 +10,5 @@ abstract class ElementoMultimediale {
         return titolo;
     }
 
+    public abstract void play();
 }
