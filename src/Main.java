@@ -56,6 +56,8 @@ public class Main {
                     ((Immagine) elemento).show();
                 } else if (elemento instanceof Riproduci) {
                     ((Riproduci) elemento).play();
+                }else{
+                    System.out.println("Elemento inesistente!");
                 }
             }
         }

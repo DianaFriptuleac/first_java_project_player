@@ -1,29 +1,29 @@
-public class Video extends ElementoMultimediale implements Riproduci{
-  private int durata;
-  private int volume;
+public class Video extends ElementoRiproducibile implements Riproduci{
   private int luminosita;
 
   public Video(String titolo, int durata, int volume, int luminosita) {
-        super(titolo);
-        this.durata = durata;
-        this.volume = volume;
+        super(titolo, volume, durata);
         this.luminosita = luminosita;
     }
 
-    public void alzaVolume(){
-        volume++;
+    //Metodo luminosita
+    public void aumentaLuminosita(){
+        luminosita++;
+        System.out.println("Luminosità aumentata a " + luminosita);
     }
-    public void abbassaVolume(){
-        if(volume > 0){
-            volume--;
+    public void abbassaLuminosita(){
+        if(luminosita > 0){
+            luminosita--;
+            System.out.println("Luminosità diminuita a " + luminosita);
         }else{
-            System.out.println("Il volume è a zero, non può essere abbassato!");
+            System.out.println("La luminosità è già al minimo.");
         }
     }
+
     @Override
     public void play(){
-        for(int i = 0; i < durata; i++){
-            System.out.println(getTitolo() + ": " + "!".repeat(volume) + "*".repeat(luminosita));
+        for(int i = 0; i < getDurata(); i++){
+            System.out.println(getTitolo() + ": " + "!".repeat(getVolume()) + "*".repeat(luminosita));
         }
     }
 }

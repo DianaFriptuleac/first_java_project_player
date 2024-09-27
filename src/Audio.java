@@ -1,27 +1,13 @@
-public class Audio extends ElementoMultimediale implements Riproduci {
-private int durata;
-private int volume;
-
+public class Audio extends ElementoRiproducibile implements Riproduci {
     public Audio(String titolo, int durata, int volume) {
-        super(titolo);
-        this.durata = durata;
-        this.volume = volume;
+        super(titolo,durata,volume);
     }
 
-    public void alzaVolume(){
-        volume++;
-    }
-    public void abbassaVolume(){
-        if(volume > 0){
-            volume--;
-        }else{
-            System.out.println("Il volume è a zero, non può essere abbassato!");
-        }
-    }
     @Override
     public void play(){
-        for(int i = 0; i < durata; i++){
-            System.out.println(getTitolo() + ": " + "!".repeat(volume));
+        for(int i = 0; i < getDurata(); i++){
+            System.out.println(getTitolo() + ": " + "!".repeat(getVolume()));
         }
     }
+
 }
