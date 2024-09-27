@@ -2,12 +2,13 @@ import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
-        System.out.println("-----------------------------Player---------------------------");
+        System.out.println("-----------------------------Player Multimediale---------------------------");
         Scanner scanner = new Scanner(System.in);
         ElementoMultimediale[] elementiPlayer = new ElementoMultimediale[5];
 
         // Creo i miei elementi
         for (int i = 0; i < 5; i++) {
+            System.out.println("\n---Creazione dell'elemento " + (i + 1) + " ---");
             System.out.println("Inserisci l'elemento del player: 1-Audio; 2-Video; 3-Immagine: ");
             int elementoP = scanner.nextInt();
             scanner.nextLine();
@@ -16,25 +17,25 @@ public class Main {
 
             switch (elementoP) {
                 case 1:
-                    System.out.println("Inserisci la durata audio: ");
+                    System.out.println("Inserisci la durata audio (in minuti): ");
                     int durataA = scanner.nextInt();
-                    System.out.println("Inserisci il volume audio: ");
+                    System.out.println("Inserisci il volume dell'audio (1-10): ");
                     int volAudio = scanner.nextInt();
                     elementiPlayer[i] = new Audio(titolo, durataA, volAudio);
                     break;
 
                 case 2:
-                    System.out.println("Inserisci la durata del video: ");
+                    System.out.println("Inserisci la durata del video (in minuti): ");
                     int durataAV = scanner.nextInt();
-                    System.out.println("Inserisci il volume del video: ");
+                    System.out.println("Inserisci il volume del video (1-10): ");
                     int volVideo = scanner.nextInt();
-                    System.out.println("Inserisci la luminosità del video: ");
+                    System.out.println("Inserisci la luminosità del video (1-10): ");
                     int lumVideo = scanner.nextInt();
                     elementiPlayer[i] = new Video(titolo, durataAV, volVideo, lumVideo);
                     break;
 
                 case 3:
-                    System.out.println("Inserisci la luminosità dell'immagine: ");
+                    System.out.println("Inserisci la luminosità dell'immagine (1-10): ");
                     int lumImg = scanner.nextInt();
                     elementiPlayer[i] = new Immagine(titolo, lumImg);
                     break;
@@ -45,10 +46,25 @@ public class Main {
             }
         }
 
+        //Elenco degli elementi creati
+        System.out.println("\n **************** Elenco degli elementi creati: ******************************");
+        for(int i = 0; i < 5; i++){
+            System.out.println((i + 1) + ". " + elementiPlayer[i].getTitolo() + " (Tipo: " + tipoElemento(elementiPlayer[i]) + ")");
+        }
+
+        // Istruzioni per l'interazione
+        System.out.println("\nPuoi scegliere:");
+        System.out.println("1-5 per eseguire un elemento");
+        System.out.println("6 per regolare volume/luminosità");
+        System.out.println("0 per uscire");
+
+
         // Esecuzione dei metodi
         int choice;
         do {
-            System.out.println("Scegli un numero da 1 a 5 per eseguire un elemento, 6 per regolare il volume/luminosità, oppure 0 per uscire: ");
+            System.out.println("\n------------------ Menu di Esecuzione ------------------");
+            System.out.println("Scegli un numero da 1 a 5 per eseguire un elemento");
+            System.out.println("6 per regolare il volume/luminosità, 0 per uscire: ");
             choice = scanner.nextInt();
             if (choice > 0 && choice <= 5) {
                 eseguiElemento(elementiPlayer[choice - 1]);
@@ -65,6 +81,7 @@ public class Main {
 
     // Metodo per eseguire l'elemento
     private static void eseguiElemento(ElementoMultimediale elemento) {
+        System.out.println("\n---- Esecuzione dell'elemento selezionato ----");
         if (elemento instanceof Immagine) {
             ((Immagine) elemento).show();
         } else if (elemento instanceof Riproduci) {
@@ -76,6 +93,7 @@ public class Main {
 
     // Metodo per regolare volume/luminosita
     private static void regolaElemento(Scanner scanner, ElementoMultimediale[] elementiPlayer) {
+        System.out.println("\n---- Regolazione del volume/luminosità ----");
         System.out.println("Scegli l'elemento da regolare (1-5): ");
         int index = scanner.nextInt();
         if (index > 0 && index <= 5) {
@@ -95,7 +113,7 @@ public class Main {
 
     //Metodo volume
     private static void regolaVolume(Scanner scanner, ElementoRiproducibile elemento) {
-        System.out.println("Per alzare il volume - 1 / Per abbassare il volume - 2: ");
+        System.out.println("------- Per alzare il volume - 1 / Per abbassare il volume - 2:");
         int sceltaVolume = scanner.nextInt();
         if (sceltaVolume == 1) {
             elemento.alzaVolume();
@@ -105,7 +123,7 @@ public class Main {
     }
 //Metodo luminosita per l'immagine
     private static void regolaLuminosita(Scanner scanner, Immagine immagine) {
-        System.out.println("Per aumentare la luminosità dell'immagine - 1 / Per diminuire la luminosità dell'immagine - 2: ");
+        System.out.println("-------- Per aumentare la luminosità dell'immagine - 1 / Per diminuire la luminosità dell'immagine - 2: ");
         int sceltaLum = scanner.nextInt();
         if (sceltaLum == 1) {
             immagine.aumentaLuminosita();
@@ -116,12 +134,27 @@ public class Main {
 
     //Metodo per la luminosita del video
     private static void regolaLuminosita(Scanner scanner, Video video) {
-        System.out.println("Per aumentare la luminosità del video - 1 / Per diminuire la luminosità del video - 2: ");
+        System.out.println("--------- Per aumentare la luminosità del video - 1 / Per diminuire la luminosità del video - 2: ");
         int sceltaLum = scanner.nextInt();
         if (sceltaLum == 1) {
             video.aumentaLuminosita();
         } else if (sceltaLum == 2) {
             video.abbassaLuminosita();
         }
+    }
+
+
+    //Metodo per il tipo dell'elemento
+    private static String tipoElemento(ElementoMultimediale el){
+        if(el instanceof Audio){
+            return "Audio";
+        }else if(el instanceof Video){
+            return "Video";
+        }else if(el instanceof Immagine){
+            return "Immagine";
+        }else{
+            return "TTipo di dato sconosciuto";
+        }
+
     }
 }
