@@ -1,7 +1,7 @@
 //classe principale
 
 abstract class ElementoMultimediale {
-    protected String titolo;
+    private String titolo;
 
     public ElementoMultimediale(String titolo){
         this.titolo= titolo;
@@ -10,5 +10,4 @@ abstract class ElementoMultimediale {
         return titolo;
     }
 
-    public abstract void play();
 }
