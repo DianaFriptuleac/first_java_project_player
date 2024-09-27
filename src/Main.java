@@ -6,16 +6,19 @@ public class Main {
         Scanner scanner = new Scanner(System.in);
         ElementoMultimediale[] elementiPlayer = new ElementoMultimediale[5];
 
-        // Creo i miei elementi
+        // Creo 5 elementi
         for (int i = 0; i < 5; i++) {
             System.out.println("\n---Creazione dell'elemento " + (i + 1) + " ---");
             System.out.println("Inserisci l'elemento del player: 1-Audio; 2-Video; 3-Immagine: ");
-            int elementoP = scanner.nextInt();
+            int elementoP = scanner.nextInt();  //1, 2, 3
             scanner.nextLine();
             System.out.println("Inserisci il titolo dell'elemento: ");
             String titolo = scanner.nextLine();
 
+
+            //switch per gestire i 3 tipi di elementi
             switch (elementoP) {
+                //Audio
                 case 1:
                     System.out.println("Inserisci la durata audio (in minuti): ");
                     int durataA = scanner.nextInt();
@@ -24,6 +27,7 @@ public class Main {
                     elementiPlayer[i] = new Audio(titolo, durataA, volAudio);
                     break;
 
+                //Video
                 case 2:
                     System.out.println("Inserisci la durata del video (in minuti): ");
                     int durataAV = scanner.nextInt();
@@ -34,6 +38,7 @@ public class Main {
                     elementiPlayer[i] = new Video(titolo, durataAV, volVideo, lumVideo);
                     break;
 
+                    //Immagine
                 case 3:
                     System.out.println("Inserisci la luminosità dell'immagine (1-10): ");
                     int lumImg = scanner.nextInt();
@@ -42,7 +47,7 @@ public class Main {
 
                 default:
                     System.out.println("Errore! Il numero inserito non corrisponde a nessun elemento! ");
-                    i--;
+                    i--;      // Ripeto l'iterazione in caso di errore
             }
         }
 
@@ -59,7 +64,7 @@ public class Main {
         System.out.println("0 per uscire");
 
 
-        // Esecuzione dei metodi
+        // Esecuzione degli elementi finche non viene inserito lo zero
         int choice;
         do {
             System.out.println("\n------------------ Menu di Esecuzione ------------------");
@@ -79,7 +84,7 @@ public class Main {
         scanner.close();
     }
 
-    // Metodo per eseguire l'elemento
+    // Metodo per eseguire l'elemento (se e un img chiamo show, se e video o audio- play)
     private static void eseguiElemento(ElementoMultimediale elemento) {
         System.out.println("\n---- Esecuzione dell'elemento selezionato ----");
         if (elemento instanceof Immagine) {
@@ -150,8 +155,7 @@ public class Main {
             case Audio audio -> "Audio con durata: " + audio.getDurata();
             case Video video -> "Video con luminosità: " + video.getLuminosita();
             case Immagine immagine -> "Immagine con luminosità: " + immagine.getLuminosita();
-            case null -> "Tipo di dato sconosciuto";
-            default -> "Tipo di dato sconosciuto";
+            case null, default -> "Tipo di dato sconosciuto";
         };
 
     }
