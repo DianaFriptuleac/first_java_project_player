@@ -1,4 +1,4 @@
-public class Audio extends ElementoMultimediale {
+public class Audio extends ElementoMultimediale implements Riproduci {
 private int durata;
 private int volume;
 
@@ -9,7 +9,6 @@ private int volume;
     }
 
     public void alzaVolume(){
-
         volume++;
     }
     public void abbassaVolume(){
@@ -22,7 +21,7 @@ private int volume;
     @Override
     public void play(){
         for(int i = 0; i < durata; i++){
-            System.out.println(titolo + ": " + "!".repeat(volume));
+            System.out.println(getTitolo() + ": " + "!".repeat(volume));
         }
     }
 }
